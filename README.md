@@ -8,16 +8,12 @@ In questo repository sono disponibili materiali del corso, esercizi, esempi di c
 
 # Modalità d'Esame
 
-L’esame è composto da due parti:
+A partire dai casi d'uso descritti in una **traccia assegnata**, lo studente dovrà sviluppare 3 esempi di database:
+- Un database relazionare
+- Un database a grafo
+- Un Database NO-SQL
 
-## 1. Prova scritta di ammissione
-Una **semplice prova scritta** che testa le conoscenze generali acquisite durante il corso.
-
-⚠️ La prova **non è valida ai fini del voto**, ma è **necessaria per accedere al progetto**.
-
-## 2. Progetto
-
-A partire da una **traccia assegnata**, lo studente dovrà:
+Per ogni database dovrà:
 
 1. Progettare lo **schema di un database**
 2. **Implementare il database**
@@ -28,6 +24,8 @@ Il progetto dovrà dimostrare la capacità di:
 - progettare un database
 - utilizzare query SQL
 - interagire con il database tramite Python
+
+Il progetto dovrà essere consegnato caricando codici e presentazione su un database github con un opportuna pagina introduttiva (README.MD)
 
 ---
 
