@@ -1,0 +1,39 @@
+CREATE
+  (nAlice:User {name: 'Alice', seed: 42}),
+  (nBridget:User {name: 'Bridget', seed: 42}),
+  (nCharles:User {name: 'Charles', seed: 42}),
+  (nDoug:User {name: 'Doug'}),
+  (nMark:User {name: 'Mark'}),
+  (nMichael:User {name: 'Michael'}),
+
+  (nAlice)-[:LINK {weight: 1}]->(nBridget),
+  (nAlice)-[:LINK {weight: 1}]->(nCharles),
+  (nCharles)-[:LINK {weight: 1}]->(nBridget),
+
+  (nAlice)-[:LINK {weight: 5}]->(nDoug),
+
+  (nMark)-[:LINK {weight: 1}]->(nDoug),
+  (nMark)-[:LINK {weight: 1}]->(nMichael),
+  (nMichael)-[:LINK {weight: 1}]->(nMark);
+
+
+
+MATCH (source:User)
+OPTIONAL MATCH (source)-[r:LINK]->(target:User)
+RETURN gds.graph.project(
+  'myGraph',
+  source,
+  target,
+  {
+    sourceNodeProperties: source { .seed },
+    targetNodeProperties: target { .seed },
+    relationshipProperties: r { .weight }
+  },
+  { undirectedRelationshipTypes: ['*'] }
+)
+
+
+CALL gds.louvain.stream('myGraph')
+YIELD nodeId, communityId, intermediateCommunityIds
+RETURN gds.util.asNode(nodeId).name AS name, communityId
+ORDER BY name ASC

@@ -29,10 +29,19 @@ Il progetto dovrà essere consegnato caricando codici e presentazione su un data
 
 ---
 
-# Testo di Riferimento
+# Testi di Riferimento 📘
 
-📘 **Fundamentals of Database Systems (7th Edition)**  
+**Fundamentals of Database Systems (7th Edition)**  
 *Ramez Elmasri, Shamkant Navathe*
+
+**Graph Powered Machine Learning**  
+*Alessandro Negro*
+
+**Graph Powered Machine Learning**  
+*Alessandro Negro*
+
+**Graph Algorithms**
+*Mark Needham & Amy E. Hodler*
 
 ---
 

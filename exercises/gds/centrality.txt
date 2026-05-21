@@ -1,0 +1,43 @@
+CREATE
+  (a:Website {name: 'A'}),
+  (b:Website {name: 'B'}),
+  (c:Website {name: 'C'}),
+  (d:Website {name: 'D'}),
+  (e:Website {name: 'E'}),
+  (f:Website {name: 'F'}),
+  (g:Website {name: 'G'}),
+  (h:Website {name: 'H'}),
+  (i:Website {name: 'I'}),
+
+  (a)-[:LINK]->(b),
+  (a)-[:LINK]->(c),
+  (a)-[:LINK]->(d),
+  (b)-[:LINK]->(c),
+  (b)-[:LINK]->(d),
+  (c)-[:LINK]->(d),
+
+  (e)-[:LINK]->(b),
+  (e)-[:LINK]->(d),
+  (e)-[:LINK]->(f),
+  (e)-[:LINK]->(h),
+
+  (f)-[:LINK]->(g),
+  (f)-[:LINK]->(i),
+  (f)-[:LINK]->(h),
+  (g)-[:LINK]->(h),
+  (g)-[:LINK]->(i),
+  (h)-[:LINK]->(i);
+  
+MATCH (source:Website)-[r:LINK]->(target:Website)
+RETURN gds.graph.project(
+  'myGraph',
+  source,
+  target,
+  {},
+  { inverseIndexedRelationshipTypes: ['*'] }
+)
+
+CALL gds.hits.stream('myGraph', {hitsIterations: 20})
+YIELD nodeId, values
+RETURN gds.util.asNode(nodeId).name AS Name, values.auth AS auth, values.hub as hub
+ORDER BY Name ASC
